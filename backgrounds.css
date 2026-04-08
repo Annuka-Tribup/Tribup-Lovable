@@ -17,6 +17,17 @@
   background-color: var(--tribup-dark);
 }
 
+/* Tout le contenu direct TOUJOURS au-dessus des orbs */
+.tb-orb > *,
+.tb-orb-before > *,
+.tb-orb-after > *,
+.tb-orb-angled > *,
+.tb-orb-orbit > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pseudo-éléments orbs — toujours z-index: 1 */
 .tb-orb::before,
 .tb-orb::after,
 .tb-orb-before::before,
@@ -30,6 +41,7 @@
   opacity: var(--tribup-orb-opacity);
   pointer-events: none;
   border-radius: 50%;
+  z-index: 1;
 }
 
 /* --- ORB double : haut gauche + bas droite --- */
@@ -37,46 +49,40 @@
   top: -100px; left: -100px;
   width: var(--tribup-orb-size);
   height: var(--tribup-orb-size);
-  z-index: 1;
 }
 .tb-orb::after {
   bottom: -150px; right: 250px;
   width: var(--tribup-orb-size);
   height: var(--tribup-orb-size);
-  z-index: 1;
 }
 
-/* --- ORB avant uniquement : haut gauche --- */
+/* --- ORB avant uniquement --- */
 .tb-orb-before::before {
   top: -100px; left: -100px;
   width: var(--tribup-orb-size);
   height: var(--tribup-orb-size);
-  z-index: 1;
 }
 
-/* --- ORB après uniquement : bas droite --- */
+/* --- ORB après uniquement --- */
 .tb-orb-after::after {
   bottom: -150px; right: 250px;
   width: var(--tribup-orb-size);
   height: var(--tribup-orb-size);
-  z-index: 1;
 }
 
-/* --- ORB diagonal : haut droite --- */
+/* --- ORB diagonal --- */
 .tb-orb-angled::before {
   top: 10px; right: -60px;
   width: 600px; height: 300px;
   filter: blur(70px);
   transform: rotate(-25deg);
   transform-origin: center;
-  z-index: 1;
 }
 
-/* --- ORB orbit : grand bas droite --- */
+/* --- ORB orbit grand --- */
 .tb-orb-orbit::after {
   bottom: -200px; right: -32px;
   width: 600px; height: 600px;
-  z-index: 8;
 }
 
 /* --- Responsive --- */

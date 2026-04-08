@@ -10,97 +10,230 @@
   <link rel="stylesheet" href="./index.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--tribup-font-body); background: #111; color: white; }
-    .s-section  { padding: 64px 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .s-tag      { font-family: var(--tribup-font-title); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tribup-green); margin-bottom: 8px; }
-    .s-title    { font-family: var(--tribup-font-title); font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px; }
-    .s-desc     { font-size: 13px; color: #555; margin-bottom: 40px; }
-    .s-row      { display: flex; flex-wrap: wrap; gap: 24px; }
-    .s-card     { background: #1e1e1e; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 28px; flex: 1; min-width: 260px; }
-    .s-label    { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #555; margin-bottom: 20px; }
-    .s-note     { font-size: 12px; color: #444; margin-top: 10px; }
-    .s-divider  { height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
-    .orb-demo   { width: 100%; height: 180px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-    .orb-label  { font-family: var(--tribup-font-title); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); position: relative; z-index: 2; }
+
+    body {
+      font-family: var(--tribup-font-body);
+      background: #0a0a0a;
+      color: white;
+    }
+
+    /* Conteneur centré 80% */
+    .wrap {
+      width: 80%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
+    .s-section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Labels de section */
+    .s-tag {
+      font-family: var(--tribup-font-title);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tribup-green);
+      margin-bottom: 8px;
+    }
+
+    .s-title {
+      font-family: var(--tribup-font-title);
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .s-desc {
+      font-family: var(--tribup-font-body);
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+
+    /* Grille */
+    .s-row { display: flex; flex-wrap: wrap; gap: 24px; }
+    .s-col { flex: 1; min-width: 260px; }
+    .s-col-full { width: 100%; }
+
+    /* Card showcase */
+    .s-card {
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--tribup-radius);
+      padding: 28px;
+      height: 100%;
+    }
+
+    .s-label {
+      font-family: var(--tribup-font-title);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .s-note {
+      font-family: var(--tribup-font-body);
+      font-size: 12px;
+      color: #444;
+      margin-top: 12px;
+    }
+
+    .s-note code {
+      color: var(--tribup-green);
+      font-family: monospace;
+    }
+
+    .s-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
+
+    /* Démo orb — grande hauteur pour voir l'effet */
+    .orb-demo {
+      width: 100%;
+      height: 260px;
+      border-radius: var(--tribup-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .orb-demo span {
+      font-family: var(--tribup-font-title);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Couleur swatch */
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .swatch-color {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .swatch span {
+      font-family: var(--tribup-font-body);
+      font-size: 13px;
+      color: #888;
+    }
+
+    /* Fond blanc pour section claire */
+    .s-section-white {
+      background: var(--tribup-white);
+    }
+
+    .s-section-white .s-title { color: var(--tribup-text-dark); }
+    .s-section-white .s-card {
+      background: #f5f5f5;
+      border-color: rgba(0,0,0,0.08);
+    }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div style="padding:48px; border-bottom:1px solid rgba(255,255,255,0.06);">
-  <p class="s-tag">Design System</p>
-  <h1 style="font-family:var(--tribup-font-title);font-size:48px;font-weight:700;">Tribup UI Library</h1>
-  <p style="color:#555;margin-top:8px;font-size:14px;">tokens · typographie · backgrounds · boutons · box</p>
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<div style="background: var(--tribup-dark); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 48px 0;">
+  <div class="wrap">
+    <span class="tb-overtitle" style="margin-bottom: 20px; display: inline-flex;">Design System</span>
+    <h1 class="tb-h1 tb-text-white" style="margin-top: 16px;">
+      Tribup <span class="tb-text-green">UI</span> Library
+    </h1>
+    <p class="tb-text tb-text-gray" style="margin-top: 12px;">tokens · typographie · backgrounds · boutons · box</p>
+  </div>
 </div>
 
 
 <!-- ============================================================
-     TYPOGRAPHIE
+     TOKENS + TYPOGRAPHIE (fusionnés)
      ============================================================ -->
 <div class="s-section">
-  <p class="s-tag">Typographie</p>
-  <h2 class="s-title">Styles de texte</h2>
-  <p class="s-desc">Toujours combiner avec une classe couleur : tb-text-white / tb-text-dark / tb-text-gray / tb-text-green</p>
+  <div class="wrap">
+    <p class="s-tag">Tokens & Typographie</p>
+    <h2 class="s-title">Variables & Styles de texte</h2>
+    <p class="s-desc">Toutes les valeurs de base. Combiner une classe de style avec une classe couleur.</p>
 
-  <div class="s-row">
+    <div class="s-row">
 
-    <!-- Sur-titre -->
-    <div class="s-card" style="flex:2; min-width:100%;">
-      <p class="s-label">tb-overtitle — Élément sur-titre</p>
-      <span class="tb-overtitle">Ce que Trib'Up fait pour vous</span>
-      <p class="s-note">.tb-overtitle — Toujours avec ⚡ automatique · Cadre semi-transparent · Oswald 16px</p>
-    </div>
-
-    <!-- H1 -->
-    <div class="s-card" style="flex:2; min-width:100%;">
-      <p class="s-label">tb-h1 — Gros titre hero</p>
-      <p class="tb-h1 tb-text-white">Une solution <span class="tb-text-green">complète</span></p>
-      <div class="s-divider"></div>
-      <p class="tb-h1 tb-text-dark" style="background:white;padding:16px;border-radius:8px;">Une solution <span class="tb-text-green">complète</span></p>
-      <p class="s-note">.tb-h1 + .tb-text-white ou .tb-text-dark · Mot en avant : .tb-text-green · Oswald 75px / 900</p>
-    </div>
-
-    <!-- H2 -->
-    <div class="s-card" style="flex:2; min-width:100%;">
-      <p class="s-label">tb-h2 — Titre principal</p>
-      <p class="tb-h2 tb-text-white">Des leads <span class="tb-text-green">ultra-qualifiés</span> pour chaque objectif</p>
-      <p class="s-note">.tb-h2 · Oswald 55px / 700</p>
-    </div>
-
-    <!-- Sous-titre -->
-    <div class="s-card" style="flex:2; min-width:100%;">
-      <p class="s-label">tb-subtitle — Sous-titre</p>
-      <p class="tb-subtitle tb-text-white">Nous nous focalisons sur les ventes, pas les leads</p>
-      <p class="s-note">.tb-subtitle · Nunito Sans 30px / 600</p>
-    </div>
-
-    <!-- Texte principal -->
-    <div class="s-card" style="flex:2; min-width:100%;">
-      <p class="s-label">tb-text — Texte principal</p>
-      <p class="tb-text tb-text-white">Trib'Up combine technologie, expertise et accompagnement pour transformer votre agence en machine à mandats. Un écosystème pensé pour les dirigeants ambitieux qui veulent passer au niveau supérieur.</p>
-      <p class="s-note">.tb-text · Nunito Sans 18px / 400</p>
-    </div>
-
-    <!-- Couleurs de texte -->
-    <div class="s-card">
-      <p class="s-label">Couleurs de texte</p>
-      <p class="tb-text tb-text-white" style="margin-bottom:8px;">tb-text-white · #ffffff</p>
-      <p class="tb-text tb-text-gray" style="margin-bottom:8px;">tb-text-gray · #474747</p>
-      <p class="tb-text tb-text-green" style="margin-bottom:8px;">tb-text-green · #32d856</p>
-      <p class="tb-text tb-text-dark" style="background:white;padding:8px;border-radius:6px;">tb-text-dark · #1a1a1a</p>
-    </div>
-
-    <!-- Exemple combiné -->
-    <div class="s-card tb-orb" style="padding:32px;">
-      <p class="s-label">Exemple combiné</p>
-      <span class="tb-overtitle" style="margin-bottom:20px;display:inline-flex;">L'écosystème Trib'Up</span>
-      <p class="tb-h2 tb-text-white" style="margin-top:16px;">Une solution <span class="tb-text-green">complète</span> pour scaler</p>
-      <p class="tb-text tb-text-gray" style="margin-top:12px;margin-bottom:24px;">Trib'Up combine technologie, expertise et accompagnement pour transformer votre agence.</p>
-      <div class="tb-btn-left">
-        <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+      <!-- Couleurs -->
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">Couleurs — --tribup-*</p>
+          <div class="swatch"><div class="swatch-color" style="background:#32d856;"></div><span style="color:#32d856;">--tribup-green · #32d856</span></div>
+          <div class="swatch"><div class="swatch-color" style="background:#44ee68;"></div><span style="color:#44ee68;">--tribup-green-light · #44ee68</span></div>
+          <div class="swatch"><div class="swatch-color" style="background:#3ACC59;"></div><span style="color:#3ACC59;">--tribup-green-accent · #3ACC59</span></div>
+          <div class="swatch"><div class="swatch-color" style="background:#ffffff; border:1px solid #333;"></div><span>--tribup-white · #ffffff</span></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1a1a1a; border:1px solid #333;"></div><span>--tribup-dark · #1a1a1a</span></div>
+          <div class="swatch"><div class="swatch-color" style="background:#474747;"></div><span>--tribup-text-gray · #474747</span></div>
+        </div>
       </div>
-    </div>
 
+      <!-- Typo title -->
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">Typographie — Oswald (titres)</p>
+          <p style="font-family:var(--tribup-font-title); font-size:11px; color:#444; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">tb-overtitle · 16px / 400</p>
+          <span class="tb-overtitle" style="margin-bottom:20px; display:inline-flex;">Sur-titre exemple</span>
+          <p style="font-family:var(--tribup-font-title); font-size:11px; color:#444; text-transform:uppercase; letter-spacing:0.1em; margin-top:20px; margin-bottom:6px;">tb-h1 · 75px / 900</p>
+          <p class="tb-h1 tb-text-white" style="font-size:42px;">Titre <span class="tb-text-green">H1</span></p>
+          <p style="font-family:var(--tribup-font-title); font-size:11px; color:#444; text-transform:uppercase; letter-spacing:0.1em; margin-top:16px; margin-bottom:6px;">tb-h2 · 55px / 700</p>
+          <p class="tb-h2 tb-text-white" style="font-size:30px;">Titre <span class="tb-text-green">H2</span></p>
+        </div>
+      </div>
+
+      <!-- Typo body -->
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">Typographie — Nunito Sans (corps)</p>
+          <p style="font-family:var(--tribup-font-title); font-size:11px; color:#444; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">tb-subtitle · 30px / 600</p>
+          <p class="tb-subtitle tb-text-white" style="margin-bottom:20px;">Sous-titre exemple</p>
+          <p style="font-family:var(--tribup-font-title); font-size:11px; color:#444; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">tb-text · 18px / 400</p>
+          <p class="tb-text tb-text-white" style="margin-bottom:20px;">Texte principal — corps de contenu lisible et moderne sur plusieurs lignes.</p>
+          <p style="font-family:var(--tribup-font-title); font-size:11px; color:#444; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Couleurs de texte</p>
+          <p class="tb-text tb-text-white">· tb-text-white</p>
+          <p class="tb-text tb-text-gray">· tb-text-gray</p>
+          <p class="tb-text tb-text-green">· tb-text-green</p>
+          <p class="tb-text tb-text-dark" style="background:white; padding:4px 8px; border-radius:4px; margin-top:4px;">· tb-text-dark</p>
+        </div>
+      </div>
+
+      <!-- Exemple combiné -->
+      <div class="s-col-full">
+        <div class="s-card tb-orb" style="padding: 48px;">
+          <p class="s-label" style="color:#32d856;">Exemple combiné — bloc hero</p>
+          <span class="tb-overtitle" style="margin-bottom:20px; display:inline-flex;">L'écosystème Trib'Up</span>
+          <p class="tb-h1 tb-text-white" style="margin-top:16px; margin-bottom:12px;">Une solution <span class="tb-text-green">complète</span> pour scaler</p>
+          <p class="tb-subtitle tb-text-white" style="margin-bottom:12px;">(Nous nous focalisons sur les ventes, pas les leads)</p>
+          <p class="tb-text tb-text-gray" style="margin-bottom:28px;">Trib'Up combine technologie, expertise et accompagnement pour transformer votre agence en machine à mandats.</p>
+          <div class="tb-btn-left">
+            <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -109,47 +242,54 @@
      BOUTONS
      ============================================================ -->
 <div class="s-section">
-  <p class="s-tag">Components</p>
-  <h2 class="s-title">Boutons</h2>
-  <p class="s-desc">Icône toujours présente. Shimmer hover = web · Shimmer boucle = mobile. Wrapper d'alignement obligatoire.</p>
-  <div class="s-row">
+  <div class="wrap">
+    <p class="s-tag">Components</p>
+    <h2 class="s-title">Boutons</h2>
+    <p class="s-desc">Icône toujours présente. Shimmer hover = web · Shimmer boucle = mobile. Wrapper d'alignement obligatoire.</p>
 
-    <div class="s-card">
-      <p class="s-label">tb-btn — Hover shimmer / Web</p>
-      <div class="tb-btn-left" style="margin-bottom:16px;">
-        <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+    <div class="s-row">
+
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">tb-btn — Shimmer hover / Web</p>
+          <div class="tb-btn-left" style="margin-bottom:16px;">
+            <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+          <p class="s-note"><code>.tb-btn-left</code></p>
+          <div class="s-divider"></div>
+          <div class="tb-btn-center" style="margin-bottom:16px;">
+            <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+          <p class="s-note"><code>.tb-btn-center</code></p>
+          <div class="s-divider"></div>
+          <div class="tb-btn-right" style="margin-bottom:16px;">
+            <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+          <p class="s-note"><code>.tb-btn-right</code></p>
+        </div>
       </div>
-      <p class="s-note">.tb-btn-left</p>
-      <div class="s-divider"></div>
-      <div class="tb-btn-center" style="margin-bottom:16px;">
-        <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">tb-btn-loop — Shimmer boucle / Mobile</p>
+          <div class="tb-btn-left" style="margin-bottom:16px;">
+            <a href="#" class="tb-btn-loop">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+          <p class="s-note"><code>.tb-btn-left</code></p>
+          <div class="s-divider"></div>
+          <div class="tb-btn-center" style="margin-bottom:16px;">
+            <a href="#" class="tb-btn-loop">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+          <p class="s-note"><code>.tb-btn-center</code></p>
+          <div class="s-divider"></div>
+          <div class="tb-btn-right" style="margin-bottom:16px;">
+            <a href="#" class="tb-btn-loop">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+          <p class="s-note"><code>.tb-btn-right</code></p>
+        </div>
       </div>
-      <p class="s-note">.tb-btn-center</p>
-      <div class="s-divider"></div>
-      <div class="tb-btn-right" style="margin-bottom:16px;">
-        <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
-      </div>
-      <p class="s-note">.tb-btn-right</p>
+
     </div>
-
-    <div class="s-card">
-      <p class="s-label">tb-btn-loop — Shimmer boucle / Mobile</p>
-      <div class="tb-btn-left" style="margin-bottom:16px;">
-        <a href="#" class="tb-btn-loop">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
-      </div>
-      <p class="s-note">.tb-btn-left</p>
-      <div class="s-divider"></div>
-      <div class="tb-btn-center" style="margin-bottom:16px;">
-        <a href="#" class="tb-btn-loop">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
-      </div>
-      <p class="s-note">.tb-btn-center</p>
-      <div class="s-divider"></div>
-      <div class="tb-btn-right" style="margin-bottom:16px;">
-        <a href="#" class="tb-btn-loop">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
-      </div>
-      <p class="s-note">.tb-btn-right</p>
-    </div>
-
   </div>
 </div>
 
@@ -158,124 +298,214 @@
      BOX
      ============================================================ -->
 <div class="s-section">
-  <p class="s-tag">Components</p>
-  <h2 class="s-title">Box</h2>
-  <p class="s-desc">Fond semi-transparent, bordure subtile, border-radius Tribup. Toujours sur fond sombre.</p>
-  <div class="s-row">
+  <div class="wrap">
+    <p class="s-tag">Components</p>
+    <h2 class="s-title">Box</h2>
+    <p class="s-desc">Fond semi-transparent, bordure subtile, border-radius Tribup. Toujours sur fond sombre.</p>
 
-    <div class="s-card">
-      <p class="s-label">tb-box — Vide</p>
-      <div class="tb-box" style="min-height:100px;"></div>
-      <p class="s-note">.tb-box</p>
-    </div>
+    <div class="s-row">
 
-    <div class="s-card">
-      <p class="s-label">tb-box — Avec contenu</p>
-      <div class="tb-box">
-        <p class="tb-h2 tb-text-white" style="font-size:22px;margin-bottom:8px;">Leads Vendeurs</p>
-        <p class="tb-text tb-text-gray" style="margin-bottom:20px;">Des propriétaires déjà prêts à vendre, détectés au bon moment.</p>
-        <div class="tb-btn-left">
-          <a href="#" class="tb-btn">En savoir plus <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">tb-box — Vide</p>
+          <div class="tb-box" style="min-height:120px;"></div>
+          <p class="s-note"><code>.tb-box</code></p>
         </div>
       </div>
-      <p class="s-note">.tb-box + classes typo</p>
-    </div>
 
-    <div class="s-card">
-      <p class="s-label">tb-box — Dans un orb</p>
-      <div class="tb-orb" style="padding:24px;border-radius:12px;">
-        <div class="tb-box">
-          <p class="tb-h2 tb-text-white" style="font-size:20px;margin-bottom:8px;">Box sur fond orb</p>
-          <p class="tb-text tb-text-gray">.tb-orb + .tb-box imbriqués</p>
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">tb-box — Avec contenu</p>
+          <div class="tb-box">
+            <p class="tb-h2 tb-text-white" style="font-size:22px; margin-bottom:8px;">Leads Vendeurs</p>
+            <p class="tb-text tb-text-gray" style="margin-bottom:20px;">Des propriétaires déjà prêts à vendre, détectés au bon moment.</p>
+            <div class="tb-btn-left">
+              <a href="#" class="tb-btn">En savoir plus <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+            </div>
+          </div>
+          <p class="s-note"><code>.tb-box</code> + classes typo</p>
         </div>
       </div>
-      <p class="s-note">.tb-orb + .tb-box</p>
-    </div>
 
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">tb-box — Dans un orb</p>
+          <div class="tb-orb" style="padding:24px; border-radius: 20px 0 20px 0;">
+            <div class="tb-box">
+              <p class="tb-h2 tb-text-white" style="font-size:20px; margin-bottom:8px;">Box sur fond orb</p>
+              <p class="tb-text tb-text-gray">.tb-orb + .tb-box imbriqués</p>
+            </div>
+          </div>
+          <p class="s-note"><code>.tb-orb</code> + <code>.tb-box</code></p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
 
 <!-- ============================================================
-     BACKGROUNDS & ORBS
+     BACKGROUNDS & ORBS — sur fond sombre, grandes démos
      ============================================================ -->
 <div class="s-section">
-  <p class="s-tag">Backgrounds</p>
-  <h2 class="s-title">Fonds + Orbs vertes</h2>
-  <p class="s-desc">Les orbs incluent toujours le fond sombre. tb-bg-white pour fond clair sans orb.</p>
-  <div class="s-row">
+  <div class="wrap">
+    <p class="s-tag">Backgrounds</p>
+    <h2 class="s-title">Fonds + Orbs vertes</h2>
+    <p class="s-desc">Les orbs incluent toujours le fond sombre. tb-bg-white pour fond clair sans orb.</p>
 
-    <div class="s-card">
-      <p class="s-label">tb-orb — Double</p>
-      <div class="orb-demo tb-orb"><span class="orb-label">avant + après</span></div>
-      <p class="s-note">.tb-orb</p>
-    </div>
+    <div class="s-row">
 
-    <div class="s-card">
-      <p class="s-label">tb-orb-before — Haut gauche</p>
-      <div class="orb-demo tb-orb-before"><span class="orb-label">avant</span></div>
-      <p class="s-note">.tb-orb-before</p>
-    </div>
-
-    <div class="s-card">
-      <p class="s-label">tb-orb-after — Bas droite</p>
-      <div class="orb-demo tb-orb-after"><span class="orb-label">après</span></div>
-      <p class="s-note">.tb-orb-after</p>
-    </div>
-
-    <div class="s-card">
-      <p class="s-label">tb-orb-angled — Diagonal</p>
-      <div class="orb-demo tb-orb-angled"><span class="orb-label">diagonal</span></div>
-      <p class="s-note">.tb-orb-angled</p>
-    </div>
-
-    <div class="s-card">
-      <p class="s-label">tb-orb-orbit — Grand bas droite</p>
-      <div class="orb-demo tb-orb-orbit"><span class="orb-label">orbit</span></div>
-      <p class="s-note">.tb-orb-orbit</p>
-    </div>
-
-    <div class="s-card">
-      <p class="s-label">tb-bg-white — Fond blanc</p>
-      <div class="orb-demo tb-bg-white" style="border:1px solid rgba(0,0,0,0.08);">
-        <span class="orb-label" style="color:#bbb;">fond blanc</span>
+      <div class="s-col">
+        <p class="s-label" style="margin-bottom:12px;">tb-orb — Double</p>
+        <div class="orb-demo tb-orb"><span>avant + après</span></div>
+        <p class="s-note"><code>.tb-orb</code></p>
       </div>
-      <p class="s-note">.tb-bg-white</p>
-    </div>
 
+      <div class="s-col">
+        <p class="s-label" style="margin-bottom:12px;">tb-orb-before — Haut gauche</p>
+        <div class="orb-demo tb-orb-before"><span>avant</span></div>
+        <p class="s-note"><code>.tb-orb-before</code></p>
+      </div>
+
+      <div class="s-col">
+        <p class="s-label" style="margin-bottom:12px;">tb-orb-after — Bas droite</p>
+        <div class="orb-demo tb-orb-after"><span>après</span></div>
+        <p class="s-note"><code>.tb-orb-after</code></p>
+      </div>
+
+      <div class="s-col">
+        <p class="s-label" style="margin-bottom:12px;">tb-orb-angled — Diagonal</p>
+        <div class="orb-demo tb-orb-angled"><span>diagonal</span></div>
+        <p class="s-note"><code>.tb-orb-angled</code></p>
+      </div>
+
+      <div class="s-col">
+        <p class="s-label" style="margin-bottom:12px;">tb-orb-orbit — Grand bas droite</p>
+        <div class="orb-demo tb-orb-orbit"><span>orbit</span></div>
+        <p class="s-note"><code>.tb-orb-orbit</code></p>
+      </div>
+
+      <div class="s-col">
+        <p class="s-label" style="margin-bottom:12px;">tb-bg-white — Fond blanc</p>
+        <div class="orb-demo tb-bg-white" style="border: 1px solid rgba(0,0,0,0.08);">
+          <span style="color: #333;">fond blanc</span>
+        </div>
+        <p class="s-note"><code>.tb-bg-white</code></p>
+      </div>
+
+    </div>
   </div>
 </div>
 
 
+
+
 <!-- ============================================================
-     TOKENS
+     BREADCRUMB
      ============================================================ -->
 <div class="s-section">
-  <p class="s-tag">Tokens</p>
-  <h2 class="s-title">Variables de base</h2>
-  <p class="s-desc">Préfixe --tribup- sur toutes les variables. Modifier ici = répercuté partout.</p>
-  <div class="s-row">
+  <div class="wrap">
+    <p class="s-tag">Components</p>
+    <h2 class="s-title">Breadcrumb</h2>
+    <p class="s-desc">Navigation d'étapes. Trois états : normal · actif (tb-active) · validé (tb-done).</p>
 
-    <div class="s-card">
-      <p class="s-label">Couleurs</p>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;border-radius:6px;background:#32d856;flex-shrink:0;"></div><span style="color:#32d856;font-size:13px;">--tribup-green · #32d856</span></div>
-        <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;border-radius:6px;background:#44ee68;flex-shrink:0;"></div><span style="color:#44ee68;font-size:13px;">--tribup-green-light · #44ee68</span></div>
-        <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;border-radius:6px;background:#ffffff;flex-shrink:0;"></div><span style="color:#fff;font-size:13px;">--tribup-white · #ffffff</span></div>
-        <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;border-radius:6px;background:#1a1a1a;border:1px solid #333;flex-shrink:0;"></div><span style="color:#aaa;font-size:13px;">--tribup-dark · #1a1a1a</span></div>
-        <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;border-radius:6px;background:#474747;flex-shrink:0;"></div><span style="color:#888;font-size:13px;">--tribup-text-gray · #474747</span></div>
+    <div class="s-row">
+
+      <div class="s-col-full">
+        <div class="s-card">
+          <p class="s-label">Exemple complet — Tunnel onboarding</p>
+          <div class="tb-breadcrumb-wrap">
+            <ol class="tb-breadcrumb">
+              <li class="tb-breadcrumb-step tb-done">
+                <p>Contrat signé <i class="fa-solid fa-check-double"></i></p>
+              </li>
+              <li class="tb-breadcrumb-step tb-active">
+                <p>Paiement acompte</p>
+              </li>
+              <li class="tb-breadcrumb-step"><p>Formulaire onboarding</p></li>
+              <li class="tb-breadcrumb-step"><p>Rendez-vous onboarding</p></li>
+              <li class="tb-breadcrumb-step"><p>Accès CRM</p></li>
+            </ol>
+          </div>
+          <p class="s-note"><code>.tb-done</code> → validé vert · <code>.tb-active</code> → étape courante · sans classe → à venir</p>
+        </div>
+      </div>
+
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">Début de tunnel</p>
+          <div class="tb-breadcrumb-wrap">
+            <ol class="tb-breadcrumb">
+              <li class="tb-breadcrumb-step tb-active"><p>Étape 1</p></li>
+              <li class="tb-breadcrumb-step"><p>Étape 2</p></li>
+              <li class="tb-breadcrumb-step"><p>Étape 3</p></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">Milieu de tunnel</p>
+          <div class="tb-breadcrumb-wrap">
+            <ol class="tb-breadcrumb">
+              <li class="tb-breadcrumb-step tb-done"><p>Étape 1 <i class="fa-solid fa-check-double"></i></p></li>
+              <li class="tb-breadcrumb-step tb-active"><p>Étape 2</p></li>
+              <li class="tb-breadcrumb-step"><p>Étape 3</p></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-col">
+        <div class="s-card">
+          <p class="s-label">Fin de tunnel</p>
+          <div class="tb-breadcrumb-wrap">
+            <ol class="tb-breadcrumb">
+              <li class="tb-breadcrumb-step tb-done"><p>Étape 1 <i class="fa-solid fa-check-double"></i></p></li>
+              <li class="tb-breadcrumb-step tb-done"><p>Étape 2 <i class="fa-solid fa-check-double"></i></p></li>
+              <li class="tb-breadcrumb-step tb-active"><p>Étape 3</p></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION SUR FOND BLANC — texte sombre automatique
+     ============================================================ -->
+<div class="s-section s-section-white">
+  <div class="wrap">
+    <p class="s-tag">DA</p>
+    <h2 class="s-title">Fond blanc — texte sombre</h2>
+    <p class="s-desc" style="color:#999;">Sur fond blanc, tout le texte passe en sombre. Même classes, même composants.</p>
+
+    <div class="s-row">
+      <div class="s-col">
+        <div class="s-card">
+          <span class="tb-overtitle" style="margin-bottom:16px; display:inline-flex; border-color:rgba(0,0,0,0.15); background:rgba(0,0,0,0.04); color:#1a1a1a;">Types de leads</span>
+          <p class="tb-h2 tb-text-dark" style="margin-top:16px; margin-bottom:8px;">Des leads <span class="tb-text-green">ultra-qualifiés</span></p>
+          <p class="tb-text tb-text-gray" style="margin-bottom:20px;">Notre expertise en ciblage comportemental nous permet d'identifier les prospects au bon moment.</p>
+          <div class="tb-btn-left">
+            <a href="#" class="tb-btn">Vérifiez votre éligibilité <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-col">
+        <div class="s-card">
+          <p class="tb-h2 tb-text-dark" style="font-size:22px; margin-bottom:8px;">Leads Vendeurs</p>
+          <p class="tb-text tb-text-gray" style="margin-bottom:20px;">Des propriétaires déjà prêts à vendre, détectés au bon moment de leur parcours.</p>
+          <div class="tb-btn-left">
+            <a href="#" class="tb-btn">En savoir plus <span class="tb-btn-icon"><i class="fa-solid fa-check"></i></span></a>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="s-card">
-      <p class="s-label">Typographie</p>
-      <p style="font-family:var(--tribup-font-title);font-size:40px;font-weight:900;color:white;margin-bottom:2px;">Oswald 900</p>
-      <p style="font-family:var(--tribup-font-title);font-size:28px;font-weight:700;color:white;margin-bottom:2px;">Oswald 700</p>
-      <p style="font-family:var(--tribup-font-title);font-size:16px;color:#555;margin-bottom:20px;">Oswald 400 — sur-titre</p>
-      <p style="font-family:var(--tribup-font-body);font-size:20px;font-weight:600;color:white;margin-bottom:2px;">Nunito Sans 600</p>
-      <p style="font-family:var(--tribup-font-body);font-size:16px;font-weight:400;color:#888;">Nunito Sans 400 — texte courant</p>
-    </div>
-
   </div>
 </div>
 

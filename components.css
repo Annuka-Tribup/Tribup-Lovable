@@ -141,3 +141,105 @@
   border-radius: var(--tribup-radius);
   padding: 28px;
 }
+
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+
+.tb-breadcrumb-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--tribup-font-body);
+}
+
+.tb-breadcrumb {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tb-breadcrumb-step {
+  display: inline-block;
+  position: relative;
+  margin-right: 6px;
+}
+
+/* Fond skewé */
+.tb-breadcrumb-step::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: var(--tribup-box-bg);
+  border: 1px solid var(--tribup-box-border);
+  border-radius: 5px;
+  transform: skew(-20deg);
+  z-index: 0;
+}
+
+/* Texte */
+.tb-breadcrumb-step p {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  line-height: 2.5;
+  padding: 0 20px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  z-index: 2;
+  font-weight: 600;
+  font-family: var(--tribup-font-body);
+  font-size: 12px;
+  margin: 0;
+}
+
+/* Étape active */
+.tb-breadcrumb-step.tb-active p {
+  color: var(--tribup-white);
+}
+
+/* Étape validée */
+.tb-breadcrumb-step.tb-done p {
+  color: var(--tribup-green);
+}
+
+.tb-breadcrumb-step.tb-done i {
+  color: var(--tribup-green);
+  font-size: 13px;
+  margin-left: 8px;
+  position: relative;
+  top: -1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tb-breadcrumb-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tb-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .tb-breadcrumb-step {
+    margin-right: 5px;
+    margin-bottom: 6px;
+  }
+
+  .tb-breadcrumb-step p {
+    font-size: 11px;
+    padding: 0 14px;
+    line-height: 2.2;
+  }
+
+  .tb-breadcrumb-step::before {
+    transform: skew(-15deg);
+  }
+}

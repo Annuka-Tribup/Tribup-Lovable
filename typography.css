@@ -1,0 +1,112 @@
+/* ============================================================
+   TRIBUP — TYPOGRAPHY
+   ============================================================ */
+
+
+/* ============================================================
+   COULEURS DE TEXTE
+   ============================================================ */
+
+.tb-text-dark    { color: #1a1a1a; }
+.tb-text-gray    { color: #474747; }
+.tb-text-white   { color: #ffffff; }
+.tb-text-green   { color: var(--tribup-green); }
+
+
+/* ============================================================
+   GROS TITRE — Header hero
+   Oswald 75px / 900 / uppercase / lh 1.1
+   ============================================================ */
+
+.tb-h1 {
+  font-family: var(--tribup-font-title);
+  font-size: 75px;
+  font-weight: 900;
+  line-height: 1.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .tb-h1 { font-size: 40px; }
+}
+
+
+/* ============================================================
+   TITRE PRINCIPAL — Section
+   Oswald 55px / 700 / uppercase / lh 1.1
+   ============================================================ */
+
+.tb-h2 {
+  font-family: var(--tribup-font-title);
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 1.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .tb-h2 { font-size: 31px; }
+}
+
+
+/* ============================================================
+   SOUS-TITRE
+   Nunito Sans 30px / 600 / lh 1.3
+   ============================================================ */
+
+.tb-subtitle {
+  font-family: var(--tribup-font-body);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+@media (max-width: 640px) {
+  .tb-subtitle { font-size: 25px; }
+}
+
+
+/* ============================================================
+   TEXTE PRINCIPAL
+   Nunito Sans 18px / 400 / lh 1.3
+   ============================================================ */
+
+.tb-text {
+  font-family: var(--tribup-font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3em;
+}
+
+
+/* ============================================================
+   ÉLÉMENT SUR-TITRE — Badge éclair
+   Oswald 16px / cadre avec ⚡ devant
+   ============================================================ */
+
+.tb-overtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--tribup-font-title);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3em;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  border: 1px solid rgba(217, 217, 217, 0.3);
+  border-radius: 6px;
+  padding: 6px 14px;
+  background: rgba(74, 73, 73, 0.15);
+}
+
+.tb-overtitle::before {
+  content: "⚡";
+  font-size: 14px;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .tb-overtitle { font-size: 14px; }
+}

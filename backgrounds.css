@@ -1,0 +1,90 @@
+/* ============================================================
+   TRIBUP — BACKGROUNDS & ORBS
+   ============================================================ */
+
+/* --- Fonds de base --- */
+.tb-bg-white { background-color: var(--tribup-white); }
+.tb-bg-dark  { background-color: var(--tribup-dark); }
+
+/* --- Base commune orbs --- */
+.tb-orb,
+.tb-orb-before,
+.tb-orb-after,
+.tb-orb-angled,
+.tb-orb-orbit {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--tribup-dark);
+}
+
+.tb-orb::before,
+.tb-orb::after,
+.tb-orb-before::before,
+.tb-orb-after::after,
+.tb-orb-angled::before,
+.tb-orb-orbit::after {
+  content: "";
+  position: absolute;
+  background: var(--tribup-green);
+  filter: blur(var(--tribup-orb-blur));
+  opacity: var(--tribup-orb-opacity);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* --- ORB double : haut gauche + bas droite --- */
+.tb-orb::before {
+  top: -100px; left: -100px;
+  width: var(--tribup-orb-size);
+  height: var(--tribup-orb-size);
+  z-index: 1;
+}
+.tb-orb::after {
+  bottom: -150px; right: 250px;
+  width: var(--tribup-orb-size);
+  height: var(--tribup-orb-size);
+  z-index: 1;
+}
+
+/* --- ORB avant uniquement : haut gauche --- */
+.tb-orb-before::before {
+  top: -100px; left: -100px;
+  width: var(--tribup-orb-size);
+  height: var(--tribup-orb-size);
+  z-index: 1;
+}
+
+/* --- ORB après uniquement : bas droite --- */
+.tb-orb-after::after {
+  bottom: -150px; right: 250px;
+  width: var(--tribup-orb-size);
+  height: var(--tribup-orb-size);
+  z-index: 1;
+}
+
+/* --- ORB diagonal : haut droite --- */
+.tb-orb-angled::before {
+  top: 10px; right: -60px;
+  width: 600px; height: 300px;
+  filter: blur(70px);
+  transform: rotate(-25deg);
+  transform-origin: center;
+  z-index: 1;
+}
+
+/* --- ORB orbit : grand bas droite --- */
+.tb-orb-orbit::after {
+  bottom: -200px; right: -32px;
+  width: 600px; height: 600px;
+  z-index: 8;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .tb-orb::after          { right: -255px; }
+  .tb-orb::before         { right: -250px; top: -250px; }
+  .tb-orb-before::before  { top: 500px; }
+  .tb-orb-angled::before  { width: 400px; height: 150px; right: -200px; }
+  .tb-orb-after::after    { top: -100px; right: -250px; }
+  .tb-orb-orbit::after    { width: 500px; height: 500px; }
+}

@@ -1,0 +1,143 @@
+/* ============================================================
+   TRIBUP — COMPONENTS : BOUTONS
+   
+   RÈGLES :
+   - Icône toujours présente (fa-solid fa-check par défaut)
+   - tb-btn      : shimmer au hover → web
+   - tb-btn-loop : shimmer en boucle → mobile / urgence
+   - Alignement via classes tb-btn-left / center / right
+   ============================================================ */
+
+
+/* ============================================================
+   BASE COMMUNE
+   ============================================================ */
+
+.tb-btn,
+.tb-btn-loop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--tribup-btn-padding);
+  background-color: var(--tribup-green);
+  color: var(--tribup-white);
+  font-family: var(--tribup-font-title);
+  font-size: var(--tribup-btn-font-size);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--tribup-radius);
+  transition: var(--tribup-btn-transition);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tb-btn:hover,
+.tb-btn-loop:hover {
+  color: var(--tribup-white);
+  text-decoration: none;
+  box-shadow: var(--tribup-btn-shadow);
+  transform: translateY(-2px);
+}
+
+/* Icône */
+.tb-btn .tb-btn-icon,
+.tb-btn-loop .tb-btn-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   BTN HOVER — shimmer au survol (web)
+   ============================================================ */
+
+.tb-btn::after {
+  content: "";
+  position: absolute;
+  top: 0; right: -150%;
+  width: 200%; height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,0.6),
+    rgba(255,255,255,0) 70%
+  );
+  transform: skewX(-20deg);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.tb-btn:hover::after {
+  transition: right 1s ease-in-out;
+  right: 150%;
+}
+
+
+/* ============================================================
+   BTN LOOP — shimmer en boucle automatique (mobile / urgence)
+   ============================================================ */
+
+.tb-btn-loop::after {
+  content: "";
+  position: absolute;
+  top: 0; right: -150%;
+  width: 200%; height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,0.6),
+    rgba(255,255,255,0) 70%
+  );
+  transform: skewX(-20deg);
+  opacity: 0.8;
+  pointer-events: none;
+  animation: tb-shimmer 2.5s ease-in-out infinite;
+}
+
+
+/* ============================================================
+   ALIGNEMENT DU BOUTON DANS SON CONTENEUR
+   Wrapper autour du bouton
+   ============================================================ */
+
+.tb-btn-left   { display: flex; justify-content: flex-start; }
+.tb-btn-center { display: flex; justify-content: center; }
+.tb-btn-right  { display: flex; justify-content: flex-end; }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .tb-btn,
+  .tb-btn-loop {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tb-btn-left,
+  .tb-btn-center,
+  .tb-btn-right {
+    justify-content: center;
+  }
+}
+
+
+/* ============================================================
+   BOX — Carte / Bloc contenu
+   ============================================================ */
+
+.tb-box {
+  background: var(--tribup-box-bg);
+  border: 1px solid var(--tribup-box-border);
+  border-radius: var(--tribup-radius);
+  padding: 28px;
+}

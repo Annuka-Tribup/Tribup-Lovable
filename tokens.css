@@ -1,0 +1,41 @@
+/* ============================================================
+   TRIBUP — TOKENS
+   ============================================================ */
+
+:root {
+  /* Couleurs principales */
+  --tribup-green:          #32d856;
+  --tribup-green-light:    #44ee68;
+  --tribup-green-accent:   #3ACC59;
+  --tribup-green-glow:     rgba(58, 204, 89, 0.6);
+  --tribup-white:          #ffffff;
+  --tribup-dark:           #1a1a1a;
+
+  /* Couleurs de texte */
+  --tribup-text-dark:      #1a1a1a;
+  --tribup-text-gray:      #474747;
+  --tribup-text-white:     #ffffff;
+
+  /* Typographie */
+  --tribup-font-title:     'Oswald', sans-serif;
+  --tribup-font-body:      'Nunito Sans', sans-serif;
+
+  /* Bordures */
+  --tribup-radius:         20px 0px 20px 0px;
+  --tribup-radius-sm:      12px 0px 12px 0px;
+
+  /* Bouton */
+  --tribup-btn-padding:    14px 28px;
+  --tribup-btn-font-size:  17px;
+  --tribup-btn-shadow:     0 0 15px rgba(58, 204, 89, 0.6);
+  --tribup-btn-transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  /* Orbs */
+  --tribup-orb-size:       400px;
+  --tribup-orb-blur:       80px;
+  --tribup-orb-opacity:    0.33;
+
+  /* Box */
+  --tribup-box-bg:         rgba(74, 73, 73, 0.22);
+  --tribup-box-border:     rgba(217, 217, 217, 0.18);
+}

@@ -1,0 +1,10 @@
+/* ============================================================
+   TRIBUP LIB — INDEX
+   Dans Lovable : import './tribup-lib/index.css'
+   ============================================================ */
+
+@import './tokens.css';
+@import './animations.css';
+@import './typography.css';
+@import './backgrounds.css';
+@import './components.css';
